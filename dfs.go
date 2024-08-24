@@ -7,6 +7,7 @@ import (
 
 func main() {
 
+	// Random comment
 	const graphFilePath = "graph.txt"
 	const startNode = -1
 	const finishNode = 3
