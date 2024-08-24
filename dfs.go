@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-	// Random comment
+	// Ra,ndom comme,nt
 	const graphFilePath = "graph.txt"
 	const startNode = -1
 	const finishNode = 3
