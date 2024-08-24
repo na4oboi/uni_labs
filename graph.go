@@ -62,12 +62,15 @@ func readGraph(filePath string) Graph {
 	return *graph
 }
 
-func (graph Graph) printGraphDFS(startNode int) {
+func (graph Graph) findPathLengthDFS(startNode int, finishNode int) int {
 
 	startNodeIndex := GraphContainsIndex(graph.nodes, startNode)
 	startNodePointer := graph.nodes[startNodeIndex]
 
 	stack := []*Node{startNodePointer}
+	depthMap := map[int]int{
+		startNode: 0,
+	}
 	var visitedSlice []int
 
 	for len(stack) > 0 {
@@ -79,9 +82,16 @@ func (graph Graph) printGraphDFS(startNode int) {
 		for _, child := range current.Children {
 			if !slices.Contains(visitedSlice, child.Name) {
 				stack = append(stack, child)
+				depthMap[child.Name] = depthMap[current.Name] + 1
+				if child.Name == finishNode {
+					fmt.Printf("%d", child.Name)
+					return depthMap[child.Name]
+				}
 			}
 		}
 	}
+	fmt.Println(depthMap)
+	return -1
 }
 
 func GraphContains(sl []*Node, v int) bool {
